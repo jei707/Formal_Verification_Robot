@@ -7,3 +7,6 @@ Updates:
 *Implementing backend error handling for invalid input and unsupported actions
 *Added more preconditions, actions and world state for realism
 *Added warehouse visualization for better analysis
+
+FOR RUNNING:
+execute run.bat
