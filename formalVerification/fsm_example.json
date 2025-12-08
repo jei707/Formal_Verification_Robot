@@ -1,0 +1,64 @@
+{
+  "description": "Example FSM data structure returned by /verify or /fsm endpoints",
+  "example_response": {
+    "fsm": {
+      "nodes": [
+        {
+          "id": 0,
+          "label": "S0: path_clear, object_detected, true",
+          "state": ["object_detected", "path_clear", "true"],
+          "step": 0,
+          "type": "initial"
+        },
+        {
+          "id": 1,
+          "label": "S1: object_detected, path_clear, position_advanced, true",
+          "state": ["object_detected", "path_clear", "position_advanced", "true"],
+          "step": 1,
+          "type": "valid"
+        },
+        {
+          "id": 2,
+          "label": "S2: object_picked, path_clear, position_advanced, true",
+          "state": ["object_picked", "path_clear", "position_advanced", "true"],
+          "step": 2,
+          "type": "valid"
+        }
+      ],
+      "edges": [
+        {
+          "from": 0,
+          "to": 1,
+          "label": "moveforward",
+          "action": "moveforward",
+          "step": 1,
+          "valid": true,
+          "precondition": "path_clear"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "label": "pickobject",
+          "action": "pickobject",
+          "step": 2,
+          "valid": true,
+          "precondition": "object_detected"
+        }
+      ]
+    }
+  },
+  "usage": {
+    "endpoint_1": "POST /verify - Returns validation results + FSM data",
+    "endpoint_2": "POST /fsm - Returns only FSM visualization data",
+    "request_format": {
+      "actions": "[scanarea, moveforward, pickobject]"
+    }
+  },
+  "visualization_libraries": [
+    "vis.js (Network graph)",
+    "d3.js (Force-directed graph)",
+    "mermaid.js (Flowchart)",
+    "cytoscape.js (Graph visualization)"
+  ]
+}
+
